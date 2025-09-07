@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".LoginActivity"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
+
+
+    <TextView
+            android:text="Ingresar usuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/textView1"/>
+
+    <EditText
+            android:layout_width="250sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="text"
+            android:backgroundTint="#00AA00"
+            android:id="@+id/usuario"/>
+    <TextView
+            android:text="Ingresar contraseña"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/textView2"/>
+
+    <EditText
+            android:layout_width="250sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="textPassword"
+            android:backgroundTint="#00AA00"
+            android:id="@+id/contraseña"/>
+
+    <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recordar usuario"
+            android:layout_gravity="center"
+            android:buttonTint="#00AA00"
+            android:id="@+id/recordarUsuario"/>
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="40sp"/>
+
+    <LinearLayout
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+        <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="120sp"
+                android:layout_height="wrap_content"
+                android:text="Crear usuario"
+                android:backgroundTint="#00AA00"
+                android:textColor="@color/white"
+                android:id="@+id/crearUsuario"/>
+
+        <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="120sp"
+                android:layout_height="wrap_content"
+                android:text="Iniciar sesión"
+                android:backgroundTint="#00AA00"
+                android:textColor="@color/white"
+                android:id="@+id/iniciarSesion"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
