@@ -2,11 +2,11 @@
 
 ## Integrantes
 
-[@JCRezzano](https://github.com/JCRezzano) — Juan Cruz Rezzano
+[@JCRezzano](https://github.com/JCRezzano) 
 
-[@OscMoon](https://github.com/OscMoon) — Oscar Agustín Muñoz
+[@OscMoon](https://github.com/OscMoon) 
 
-[@Ticha22608](https://github.com/Ticha22608) — Luca Rodriguez Lencina
+[@Ticha22608](https://github.com/Ticha22608)
 
 ## Partes a trabajar
 
