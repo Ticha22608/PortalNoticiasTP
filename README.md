@@ -12,6 +12,6 @@
 
 [@Ticha22608](https://github.com/Ticha22608) — Login y backend
 
-[@JCRezzano](https://github.com/JCRezzano) — Lista general de elementos y pantalla "Mis favoritos"
+[@JCRezzano](https://github.com/JCRezzano) — Lista general de elementos, barra superior y menú  
 
-[@OscMoon](https://github.com/OscMoon) — Lista enfocada de elementos, barra superior y menú
+[@OscMoon](https://github.com/OscMoon) — Lista enfocada de elementos, pantalla "Mis favoritos"
