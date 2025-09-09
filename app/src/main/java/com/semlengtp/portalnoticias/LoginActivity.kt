@@ -42,7 +42,8 @@ class LoginActivity : AppCompatActivity() {
             registrar()
         }
         iniciarSesion.setOnClickListener {
-            login()
+            if (usuario.text.toString() == "debug") debug()
+            else login()
         }
     }
 
@@ -68,11 +69,19 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Por favor, leer los terminos y condiciones", Toast.LENGTH_SHORT).show()
             Log.i("TODO", "Traspaso de datos de login hacia la siguiente activity para escribir en BD si el usuario acepta TyC")
             startActivity(intent)
+            finish()
         }
     }
 
     private fun inputCheck(): Boolean {
         return (usuario.text.toString().isEmpty() || contraseña.text.toString().isEmpty())
+    }
+
+    private fun debug() {
+        val intent = Intent(this, testactivity::class.java)
+        Toast.makeText(this,"Debug",Toast.LENGTH_SHORT).show()
+        startActivity(intent)
+        finish()
     }
 
     /* Implementar luego

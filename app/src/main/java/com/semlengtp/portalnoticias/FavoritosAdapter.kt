@@ -1,9 +1,11 @@
 package com.semlengtp.portalnoticias
+
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import android.view.LayoutInflater
+
 class FavoritosAdapter(
     private val items: List<NoticiaFavorita>
 ) : RecyclerView.Adapter<FavoritosAdapter.FavoritoViewHolder>() {

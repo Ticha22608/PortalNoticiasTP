@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:backgroundTint="#262F25"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
     app:cardElevation="4dp"
     app:cardCornerRadius="8dp"
     app:cardUseCompatPadding="true">
@@ -16,12 +19,18 @@
     android:orientation="vertical"
     android:padding="12dp">
     <TextView
+        android:id="@+id/txtFecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#B3FFFFFF"
+        android:paddingBottom="4dp"/>
+    <TextView
         android:id ="@+id/txtTitulo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:layout_marginTop="8dp"
         android:textColor="#FFFFFF"/>
 
     <TextView
