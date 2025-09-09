@@ -7,6 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 
 class VistaNoticiasActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +24,7 @@ class VistaNoticiasActivity : AppCompatActivity() {
         val recyclerView =findViewById<RecyclerView>(R.id.recyclerNoticias)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = NoticiasAdapter(noticias)
+
 
     }
         private fun obtenerNoticias(): List<Noticia> {
