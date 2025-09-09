@@ -43,6 +43,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.picasso)
+    implementation("androidx.cardview:cardview:1.0.0")
 
 
 
