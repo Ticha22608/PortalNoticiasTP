@@ -30,8 +30,7 @@ class TyC : AppCompatActivity() {
             Log.i("TODO","Recordar o no al usuario")
             Toast.makeText(this, "Bienvenido usuario!", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, VistaNoticiasActivity::class.java)
-            //Toast.makeText(this,"VistaNoticiasActivity aún no implementado!",Toast.LENGTH_SHORT).show()
-            //val intent = Intent(this, LoginActivity::class.java)
+
             startActivity(intent)
             //val login = LoginActivity()
             //login.finalizarLogin()

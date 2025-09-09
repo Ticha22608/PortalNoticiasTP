@@ -5,6 +5,7 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#181D17"
         tools:context=".LoginActivity"
         android:orientation="vertical"
         android:layout_gravity="center_horizontal">
@@ -15,6 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="#FFFFFF"
             android:id="@+id/textView1"/>
 
     <EditText
@@ -29,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="#FFFFFF"
             android:id="@+id/textView2"/>
 
     <EditText
@@ -43,6 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Recordar usuario"
+            android:textColor="#FFFFFF"
             android:layout_gravity="center"
             android:buttonTint="#00AA00"
             android:id="@+id/recordarUsuario"/>

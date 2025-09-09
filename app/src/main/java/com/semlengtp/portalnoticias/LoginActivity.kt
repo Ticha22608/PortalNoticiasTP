@@ -50,8 +50,6 @@ class LoginActivity : AppCompatActivity() {
         } else {
             if (recordarUsuario.isChecked) Log.i("TODO", "Recordar al usuario")
             val intent = Intent(this, VistaNoticiasActivity::class.java)
-            //Toast.makeText(this,"VistaNoticiasActivity aún no implementado!",Toast.LENGTH_SHORT).show()
-            //val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
