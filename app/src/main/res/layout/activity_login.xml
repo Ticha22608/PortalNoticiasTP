@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:inputType="text"
+            android:textColor="#FFFFFF"
             android:backgroundTint="#00AA00"
             android:id="@+id/usuario"/>
     <TextView
@@ -39,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:inputType="textPassword"
+            android:textColor="#FFFFFF"
             android:backgroundTint="#00AA00"
             android:id="@+id/contraseña"/>
 

@@ -20,6 +20,7 @@ class NoticiasAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val noticia = noticias[position]
+        holder.fecha.text = noticia.fecha
         holder.titulo.text = noticia.titulo
         holder.descripcion.text = noticia.descripcion
         Picasso.get().load(noticia.imagen).into(holder.imagen)
@@ -28,6 +29,7 @@ class NoticiasAdapter(
     override fun getItemCount(): Int = noticias.size
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val fecha: TextView = itemView.findViewById(R.id.txtFecha)
         val titulo: TextView = itemView.findViewById(R.id.txtTitulo)
         val descripcion: TextView = itemView.findViewById(R.id.txtDescripcion)
         val imagen: ImageView = itemView.findViewById(R.id.imgNoticia)
