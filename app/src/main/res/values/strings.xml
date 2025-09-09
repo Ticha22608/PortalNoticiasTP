@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Portal Noticias TP</string>
+    <string name="titulo_mis_favoritos">Mis Favoritos</string>
+    <string name="texto_lista_vacia">Todavía no guardaste favoritos.</string>
 </resources>

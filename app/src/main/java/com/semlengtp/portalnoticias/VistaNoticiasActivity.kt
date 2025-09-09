@@ -25,6 +25,16 @@ class VistaNoticiasActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = NoticiasAdapter(noticias)
 
+        val btnIrFavoritos: android.widget.Button = findViewById(R.id.btnIrFavoritos)
+        btnIrFavoritos.setOnClickListener {
+
+            startActivity(android.content.Intent(this, MisFavoritosActivity::class.java))
+        }
+        val btnCerrarSesion: android.widget.Button = findViewById(R.id.btnCerrarSesion)
+        btnCerrarSesion.setOnClickListener {
+            startActivity(android.content.Intent(this, LoginActivity::class.java))
+        }
+
 
     }
         private fun obtenerNoticias(): List<Noticia> {

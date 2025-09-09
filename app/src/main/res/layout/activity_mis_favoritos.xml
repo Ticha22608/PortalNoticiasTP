@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contenedorFavoritos"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#181D17"
+    tools:context=".MisFavoritosActivity">
+
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="← Volver"
+        android:backgroundTint="#00AA00"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:id="@+id/headerFavoritos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mis favoritos"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:paddingTop="4dp"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:id="@+id/textoVacio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Todavía no guardaste favoritos."
+        android:textSize="16sp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:paddingTop="8dp"
+        android:textColor="#FFFFFF" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerFavoritos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/item_favorito"
+        />
+</LinearLayout>

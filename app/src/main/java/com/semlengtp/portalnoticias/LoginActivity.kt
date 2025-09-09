@@ -19,6 +19,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var crearUsuario : Button
     lateinit var iniciarSesion : Button
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,6 +35,8 @@ class LoginActivity : AppCompatActivity() {
         recordarUsuario = findViewById(R.id.recordarUsuario)
         crearUsuario = findViewById(R.id.crearUsuario)
         iniciarSesion = findViewById(R.id.iniciarSesion)
+
+
 
         crearUsuario.setOnClickListener {
             registrar()

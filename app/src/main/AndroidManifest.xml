@@ -26,6 +26,10 @@
         <activity
             android:name=".VistaNoticiasActivity"
             android:exported="false"/>
+        <activity
+            android:name=".MisFavoritosActivity"
+            android:exported="false"
+            android:label="@string/titulo_mis_favoritos" />
     </application>
 
 </manifest>
