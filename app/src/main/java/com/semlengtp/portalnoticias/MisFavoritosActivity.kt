@@ -33,7 +33,13 @@ class MisFavoritosActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_mis_favoritos)
 
-       drawerLayoutFav = findViewById(R.id.drawerLayoutFavoritos)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.contenedorFavoritos)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        drawerLayoutFav = findViewById(R.id.drawerLayoutFavoritos)
         navigationViewFav = findViewById(R.id.navigationViewFavoritos)
         toolbar = findViewById(R.id.toolbar)
 
