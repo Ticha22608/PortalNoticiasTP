@@ -29,33 +29,36 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         usuario = findViewById(R.id.usuario)
         contraseña = findViewById(R.id.contraseña)
         recordarUsuario = findViewById(R.id.recordarUsuario)
         crearUsuario = findViewById(R.id.crearUsuario)
         iniciarSesion = findViewById(R.id.iniciarSesion)
+        var preferencias = getSharedPreferences(resources.getString(R.string.sp_credenciales), MODE_PRIVATE)
+        var usuarioGuardado = preferencias.getString(resources.getString(R.string.usuario), null)
+        var contraseñaGuaradada = preferencias.getString(resources.getString(R.string.contraseña), null)
 
-
-
+        if (usuarioGuardado != null && contraseñaGuaradada != null) actPrincipal(usuarioGuardado)
         crearUsuario.setOnClickListener {
             registrar()
         }
         iniciarSesion.setOnClickListener {
             if (usuario.text.toString() == "debug") debug()
-            else login()
+            else login(usuario.text.toString(), contraseña.text.toString())
         }
     }
 
-    private fun login() {
+    private fun login(usuario: String, contraseña: String) {
         val datosIncompletos = inputCheck()
         if (datosIncompletos) {
             Toast.makeText(this, "Campos no completados", Toast.LENGTH_LONG).show()
         } else {
-            if (recordarUsuario.isChecked) Log.i("TODO", "Recordar al usuario")
-            val intent = Intent(this, VistaNoticiasActivity::class.java)
-            startActivity(intent)
-            finish()
+            if (recordarUsuario.isChecked) {
+                var preferencias = getSharedPreferences(resources.getString(R.string.sp_credenciales), MODE_PRIVATE)
+                preferencias.edit().putString(resources.getString(R.string.usuario), usuario).apply()
+                preferencias.edit().putString(resources.getString(R.string.contraseña),contraseña).apply()
+            }
+            actPrincipal(usuario)
         }
     }
 
@@ -80,6 +83,13 @@ class LoginActivity : AppCompatActivity() {
     private fun debug() {
         val intent = Intent(this, testactivity::class.java)
         Toast.makeText(this,"Debug",Toast.LENGTH_SHORT).show()
+        startActivity(intent)
+        finish()
+    }
+
+    private fun actPrincipal(usuario: String) {
+        val intent = Intent(this, VistaNoticiasActivity::class.java)
+        intent.putExtra("USUARIO", usuario)
         startActivity(intent)
         finish()
     }

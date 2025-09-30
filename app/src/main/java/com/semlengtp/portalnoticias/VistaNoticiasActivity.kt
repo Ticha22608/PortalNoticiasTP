@@ -21,7 +21,8 @@ class VistaNoticiasActivity : AppCompatActivity() {
         }
 
         val noticias = obtenerNoticias()
-        val recyclerView =findViewById<RecyclerView>(R.id.recyclerNoticias)
+        var preferencias = getSharedPreferences(resources.getString(R.string.sp_credenciales), MODE_PRIVATE)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerNoticias)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = NoticiasAdapter(noticias)
 
@@ -32,6 +33,8 @@ class VistaNoticiasActivity : AppCompatActivity() {
         }
         val btnCerrarSesion: android.widget.Button = findViewById(R.id.btnCerrarSesion)
         btnCerrarSesion.setOnClickListener {
+            preferencias.edit().putString(resources.getString(R.string.usuario),null).apply()
+            preferencias.edit().putString(resources.getString(R.string.contraseña),null).apply()
             startActivity(android.content.Intent(this, LoginActivity::class.java))
         }
 
