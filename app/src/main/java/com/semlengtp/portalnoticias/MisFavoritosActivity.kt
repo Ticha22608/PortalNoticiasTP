@@ -8,7 +8,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
+import android.content.Intent
+import android.widget.ImageButton
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 
 
 class MisFavoritosActivity : AppCompatActivity() {
@@ -17,15 +23,60 @@ class MisFavoritosActivity : AppCompatActivity() {
     private lateinit var recyclerFavoritos: RecyclerView
     private lateinit var textoVacio: TextView
 
+    private lateinit var drawerLayoutFav: DrawerLayout
+    private lateinit var navigationViewFav: NavigationView
+    private lateinit var toolbar: Toolbar
+    private lateinit var toggle: ActionBarDrawerToggle
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_mis_favoritos)
+
+       drawerLayoutFav = findViewById(R.id.drawerLayoutFavoritos)
+        navigationViewFav = findViewById(R.id.navigationViewFavoritos)
+        toolbar = findViewById(R.id.toolbar)
+
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "Mis favoritos"
+
+        toggle = ActionBarDrawerToggle(this, drawerLayoutFav,toolbar,R.string.nav_open,R.string.nav_close)
+        drawerLayoutFav.addDrawerListener(toggle)
+        toggle.syncState()
+
+        val header = navigationViewFav.getHeaderView(0)
+        val cerrarSesion = header.findViewById<ImageButton>(R.id.btnCerrarSesion)
+
+        cerrarSesion.setOnClickListener{
+            startActivity(Intent(this, LoginActivity::class.java))
+            drawerLayoutFav.closeDrawer(GravityCompat.START)
+        }
+
+        navigationViewFav.setCheckedItem(R.id.nav_favoritos)
+
+        navigationViewFav.setNavigationItemSelectedListener { item ->
+            when (item.itemId){
+                R.id.nav_noticias -> {
+                    startActivity(Intent(this, VistaNoticiasActivity::class.java))
+                    drawerLayoutFav.closeDrawer(GravityCompat.START)
+                    true
+                }
+                R.id.nav_favoritos -> {
+                    drawerLayoutFav.closeDrawer(GravityCompat.START)
+                    true
+                }
+                else -> false
+            }
+        }
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.contenedorFavoritos)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
         recyclerFavoritos = findViewById(R.id.recyclerFavoritos)
         textoVacio = findViewById(R.id.textoVacio)
 
@@ -60,5 +111,5 @@ class MisFavoritosActivity : AppCompatActivity() {
             recyclerFavoritos.adapter = FavoritosAdapter(favoritos)
         }
     }
-}
 
+}

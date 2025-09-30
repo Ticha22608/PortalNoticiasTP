@@ -1,5 +1,5 @@
 package com.semlengtp.portalnoticias
-
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -8,12 +8,66 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
+import android.widget.ImageButton
 
+
+
+private lateinit var drawerLayout: DrawerLayout
+private lateinit var navigationView: NavigationView
+private lateinit var toolbar: Toolbar
+private lateinit var toggle: ActionBarDrawerToggle
 class VistaNoticiasActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_noticias_elementos)
+
+        toolbar = findViewById(R.id.toolbar)
+        drawerLayout = findViewById(R.id.drawerLayout)
+        navigationView = findViewById(R.id.navigationView)
+
+
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "Portal Noticias"
+
+        toggle = ActionBarDrawerToggle(this, drawerLayout,toolbar,R.string.nav_open,R.string.nav_close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        val header = navigationView.getHeaderView(0)
+        val cerrarSesion = header.findViewById<ImageButton>(R.id.btnCerrarSesion)
+
+        cerrarSesion.setOnClickListener{
+            startActivity(Intent(this, LoginActivity::class.java))
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        navigationView.setCheckedItem(R.id.nav_noticias)
+
+
+        navigationView.setNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_noticias -> {
+
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+                R.id.nav_favoritos -> {
+
+                    startActivity(Intent(this, MisFavoritosActivity::class.java))
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+
+
+                else -> false
+            }
+        }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -24,16 +78,6 @@ class VistaNoticiasActivity : AppCompatActivity() {
         val recyclerView =findViewById<RecyclerView>(R.id.recyclerNoticias)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = NoticiasAdapter(noticias)
-
-        val btnIrFavoritos: android.widget.Button = findViewById(R.id.btnIrFavoritos)
-        btnIrFavoritos.setOnClickListener {
-
-            startActivity(android.content.Intent(this, MisFavoritosActivity::class.java))
-        }
-        val btnCerrarSesion: android.widget.Button = findViewById(R.id.btnCerrarSesion)
-        btnCerrarSesion.setOnClickListener {
-            startActivity(android.content.Intent(this, LoginActivity::class.java))
-        }
 
 
     }
@@ -60,4 +104,5 @@ class VistaNoticiasActivity : AppCompatActivity() {
                 )
             )
         }
+
     }
