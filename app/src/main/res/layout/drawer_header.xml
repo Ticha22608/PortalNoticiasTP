@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    android:padding="16dp"
+    android:background="#223026">
+
+
+    <ImageView
+        android:id="@+id/headerFoto"
+        android:layout_marginTop="10dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/outline_account_box_24"
+        android:contentDescription="Avatar"/>
+    <TextView
+        android:id="@+id/headerTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuario"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:paddingTop="8dp"/>
+
+         <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="4dp">
+
+     <TextView
+            android:id="@+id/headerEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="usuario@correo.com"
+            android:textColor="#B0BEC5"
+            android:textSize="14sp"
+            android:singleLine="true"
+            android:ellipsize="end"/>
+
+      <ImageButton
+          android:id="@+id/btnCerrarSesion"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:background="?attr/selectableItemBackgroundBorderless"
+          app:tint="#B0BEC5"
+          app:srcCompat ="@drawable/twotone_logout_24"
+          android:contentDescription="Cerrar sesión"/>
+
+    </LinearLayout>
+
+</LinearLayout>

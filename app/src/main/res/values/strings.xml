@@ -10,6 +10,8 @@
     <string name="usuario">USUARIO</string>
     <string name="contraseña">CONTRASEÑA</string>
     <string name="sp_credenciales">SP_CREDENCIALES</string>
+    <string name="nav_open">Abrir menú</string>
+    <string name="nav_close">Cerrar menú</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris volutpat, dolor id
