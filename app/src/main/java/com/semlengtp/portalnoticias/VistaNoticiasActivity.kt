@@ -27,6 +27,11 @@ private lateinit var toolbar: Toolbar
 private lateinit var toggle: ActionBarDrawerToggle
 private lateinit var nombreUsuarioMenu : String
 
+
+private lateinit var drawerLayout: DrawerLayout
+private lateinit var navigationView: NavigationView
+private lateinit var toolbar: Toolbar
+private lateinit var toggle: ActionBarDrawerToggle
 class VistaNoticiasActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +40,7 @@ class VistaNoticiasActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.green)
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
         setContentView(R.layout.activity_noticias_elementos)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -84,7 +90,57 @@ class VistaNoticiasActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = NoticiasAdapter(noticias)
+        toolbar = findViewById(R.id.toolbar)
+        drawerLayout = findViewById(R.id.drawerLayout)
+        navigationView = findViewById(R.id.navigationView)
 
+
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "Portal Noticias"
+
+        toggle = ActionBarDrawerToggle(this, drawerLayout,toolbar,R.string.nav_open,R.string.nav_close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        val header = navigationView.getHeaderView(0)
+        val cerrarSesion = header.findViewById<ImageButton>(R.id.btnCerrarSesion)
+
+        cerrarSesion.setOnClickListener{
+            startActivity(Intent(this, LoginActivity::class.java))
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        navigationView.setCheckedItem(R.id.nav_noticias)
+
+
+        navigationView.setNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_noticias -> {
+
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+                R.id.nav_favoritos -> {
+
+                    startActivity(Intent(this, MisFavoritosActivity::class.java))
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+
+
+                else -> false
+            }
+        }
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        val noticias = obtenerNoticias()
+        val recyclerView =findViewById<RecyclerView>(R.id.recyclerNoticias)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = NoticiasAdapter(noticias)
 
     }
         private fun obtenerNoticias(): List<Noticia> {

@@ -19,6 +19,7 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.WindowInsetsControllerCompat
 
 
+
 class MisFavoritosActivity : AppCompatActivity() {
 
 
@@ -36,6 +37,7 @@ class MisFavoritosActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.green)
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
         setContentView(R.layout.activity_mis_favoritos)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.contenedorFavoritos)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
