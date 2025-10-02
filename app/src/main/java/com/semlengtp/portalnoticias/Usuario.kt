@@ -3,10 +3,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
 
-@Entity(tableName = "usuarios-entity")
+@Entity(tableName = "usuarios_entity")
 data class Usuario(
-    @ColumnInfo(name="Nombre") var nombre: String,
-    @ColumnInfo (name="Contraseña") var contraseña: String
-) {
+    @ColumnInfo(name="nombre") var nombre: String,
+    @ColumnInfo (name="nontraseña") var contraseña: String,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
-}
+)
