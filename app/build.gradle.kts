@@ -30,10 +30,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
-
     }
     kotlin {
-        jvmToolchain(8)
+        jvmToolchain(11)
     }
 }
 
@@ -60,8 +59,4 @@ dependencies {
     implementation ("androidx.room:room-runtime:$roomVersion")
     implementation ("androidx.room:room-ktx:$roomVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
-
-    implementation("androidx.room:room-runtime:2.8.1")
-    implementation("androidx.room:room-ktx:2.8.1")
-    kapt("androidx.room:room-compiler:2.8.1")
 }
