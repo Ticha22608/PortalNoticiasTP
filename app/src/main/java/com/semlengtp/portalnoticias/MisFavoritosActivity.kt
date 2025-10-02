@@ -14,7 +14,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.core.view.WindowInsetsControllerCompat
+
 
 
 class MisFavoritosActivity : AppCompatActivity() {
@@ -31,6 +34,8 @@ class MisFavoritosActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        window.statusBarColor = ContextCompat.getColor(this, R.color.green)
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
         setContentView(R.layout.activity_mis_favoritos)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.contenedorFavoritos)) { v, insets ->
