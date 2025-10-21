@@ -8,17 +8,17 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [Usuario::class], version = 1)
 
-abstract class AppDatabase : RoomDatabase() {
+abstract class AppDataBase : RoomDatabase() {
     abstract fun usuarioDao(): UsuarioDao
 
     companion object {
-        private var INSTANCIA: AppDatabase? = null
-        fun getDatabase(context: Context): AppDatabase {
+        private var INSTANCIA: AppDataBase? = null
+        fun getDatabase(context: Context): AppDataBase {
             if (INSTANCIA == null) {
                 synchronized(this){
                  INSTANCIA=  Room.databaseBuilder(
                     context.applicationContext,
-                    AppDatabase::class.java,"usuarios_database")
+                    AppDataBase::class.java,"usuarios_database")
                     .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
                     .build()

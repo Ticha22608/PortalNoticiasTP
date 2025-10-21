@@ -32,7 +32,7 @@ class TyC : AppCompatActivity() {
         btnAceptar.setOnClickListener {
             val intent = Intent(this, VistaNoticiasActivity::class.java)
             val nuevoUsuario = Usuario(nombre = usuario.toString(), contrasena = contraseña.toString())
-            AppDatabase.getDatabase(applicationContext).usuarioDao().insertar(nuevoUsuario)
+            AppDataBase.getDatabase(applicationContext).usuarioDao().insertar(nuevoUsuario)
             Toast.makeText(this, "Bienvenido $usuario!", Toast.LENGTH_SHORT).show()
             startActivity(intent)
             finish()

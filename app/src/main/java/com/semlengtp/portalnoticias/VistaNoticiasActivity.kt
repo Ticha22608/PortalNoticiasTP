@@ -100,20 +100,7 @@ class VistaNoticiasActivity : AppCompatActivity() {
             supportActionBar?.title = "Portal Noticias"
         }
 
-        lifecycleScope.launch {
-            try {
-                val response = RetrofitInstancia.api.obtenerNoticias()
-                if (response.isSuccessful) {
-                    val noticias = response.body()?.noticias ?: emptyList()
-                    Log.d("API", "Noticias recibidas: ${noticias.size}")
-                    recyclerView.adapter = NoticiasAdapter(noticias)
-                } else {
-                    Log.e("API", "Error al obtener noticias: ${response.code()} - ${response.message()}")
-                }
-            } catch (e: Exception) {
-                Log.e("API", "Excepción: ${e.message}")
-            }
-        }
+
     }
 
 

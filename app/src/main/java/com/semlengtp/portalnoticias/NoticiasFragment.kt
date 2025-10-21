@@ -1,12 +1,22 @@
 package com.semlengtp.portalnoticias
 
+import android.widget.Toast
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.annotations.SerializedName
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+
+
+
 
 class NoticiasFragment : Fragment(R.layout.fragment_noticias) {
 
@@ -18,33 +28,40 @@ class NoticiasFragment : Fragment(R.layout.fragment_noticias) {
         val vista = inflater.inflate(R.layout.fragment_noticias, container, false)
         recycler = vista.findViewById(R.id.recyclerNoticias)
         recycler.layoutManager = LinearLayoutManager(requireContext())
-
-        // CARGA LOCAL (mock) — sin API
-        val noticias = obtenerNoticias()
-        recycler.adapter = NoticiasAdapter(noticias)
-
+        recycler.layoutManager = LinearLayoutManager(requireContext())
+        recycler.adapter = NoticiasAdapter(emptyList()) // arranca vacío
+        cargarNoticias()
+        return vista
         return vista
     }
 
 
-    private fun obtenerNoticias(): List<Noticia> = listOf(
-        Noticia(
-            fecha = "8 de Septiembre de 2025, 10:15",
-            titulo = "Argentinos venció a Lanús y está en semifinales",
-            descripcion = "El Bicho se metió entre los cuatro mejores de la Copa Argentina.",
-            imagen = "https://picsum.photos/seed/a1/600/400"
-        ),
-        Noticia(
-            fecha = "8 de Septiembre de 2025, 11:42",
-            titulo = "Colapinto y el análisis del GP de Italia",
-            descripcion = "Claves del rendimiento y la estrategia para el sprint final del campeonato.",
-            imagen = "https://picsum.photos/seed/a2/600/400"
-        ),
-        Noticia(
-            fecha = "8 de Septiembre de 2025, 13:05",
-            titulo = "Selección: asado y bienvenida a los juveniles",
-            descripcion = "El plantel compartió un asado y hubo bautismo de un convocado.",
-            imagen = "https://picsum.photos/seed/a3/600/400"
-        )
-    )
+    private fun cargarNoticias() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val resp = withContext(Dispatchers.IO) {
+                    RetrofitInstancia.api.obtenerNoticias(
+                        idioma = "es",
+                        pais = "ar",
+                        cantidad = 10
+                    )
+                }
+                if (resp.isSuccessful) {
+                    val lista = resp.body()?.noticias ?: emptyList()
+                    recycler.adapter = NoticiasAdapter(lista)
+                } else {
+                    Toast.makeText(requireContext(),
+                        "Error ${resp.code()}: ${resp.message()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } catch (e: Exception) {
+
+            }
+        }
+    }
 }
+
+
+
+

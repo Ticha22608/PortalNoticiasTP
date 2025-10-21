@@ -60,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
         if (datosIncompletos) {
             Toast.makeText(this, "Campos no completados", Toast.LENGTH_SHORT).show()
         } else {
-            val usuarioEncontrado = AppDatabase.getDatabase(applicationContext).usuarioDao().encontrarExacto(usuario, contraseña)
+            val usuarioEncontrado = AppDataBase.getDatabase(applicationContext).usuarioDao().encontrarExacto(usuario, contraseña)
             if (usuarioEncontrado == null) {
                 Toast.makeText(this, "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT).show()
                 return
@@ -79,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
         if (datosIncompletos) {
             Toast.makeText(this, "Campos no completados", Toast.LENGTH_SHORT).show()
         } else {
-            val usuarioEncontrado = AppDatabase.getDatabase(applicationContext).usuarioDao().encontrarNombre(usuario)
+            val usuarioEncontrado = AppDataBase.getDatabase(applicationContext).usuarioDao().encontrarNombre(usuario)
             if (usuarioEncontrado != null) {
                 Toast.makeText(this, "Usuario ya creado!", Toast.LENGTH_SHORT).show()
                 return
