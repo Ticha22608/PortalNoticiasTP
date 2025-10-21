@@ -6,6 +6,6 @@ import androidx.room.ColumnInfo
 @Entity(tableName = "usuarios_entity")
 data class Usuario(
     @ColumnInfo(name="nombre") var nombre: String,
-    @ColumnInfo (name="nontraseña") var contraseña: String,
+    @ColumnInfo (name="contraseña") var contraseña: String,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
 )
