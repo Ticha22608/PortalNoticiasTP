@@ -24,19 +24,18 @@ class TyC : AppCompatActivity() {
         }
         btnAceptar = findViewById(R.id.btnAceptar)
         btnDenegar = findViewById(R.id.btnDeclinar)
+        val bundle : Bundle? = intent.extras
+        val usuario = bundle?.getString("USUARIO")
+        val contraseña = bundle?.getString("CONTRASEÑA")
+
 
         btnAceptar.setOnClickListener {
-            Log.i("TODO","Guardar datos del usuario en DB")
-            Log.i("TODO","Recordar o no al usuario")
-            Toast.makeText(this, "Bienvenido usuario!", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, VistaNoticiasActivity::class.java)
-
+            val nuevoUsuario = Usuario(nombre = usuario.toString(), contrasena = contraseña.toString())
+            AppDatabase.getDatabase(applicationContext).usuarioDao().insertar(nuevoUsuario)
+            Toast.makeText(this, "Bienvenido $usuario!", Toast.LENGTH_SHORT).show()
             startActivity(intent)
-            //val login = LoginActivity()
-            //login.finalizarLogin()
-            //println("finalizarLogin() finalizó su ejecución")
             finish()
-            //WIP
         }
 
         btnDenegar.setOnClickListener {
