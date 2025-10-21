@@ -1,4 +1,4 @@
-package com.semlengtp.portalnoticias
+/*package com.semlengtp.portalnoticias
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -123,4 +123,4 @@ class MisFavoritosActivity : AppCompatActivity() {
         }
     }
 
-}
+}*/

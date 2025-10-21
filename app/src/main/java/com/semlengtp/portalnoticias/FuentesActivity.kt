@@ -19,7 +19,11 @@ class FuentesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_noticia_completa)
 
         @Suppress("DEPRECATION")
-        val noticia = intent.getSerializableExtra("noticia") as? Noticia ?: return
+        val noticia = intent.getSerializableExtra("noticia") as? Noticia
+        if (noticia == null) {
+            finish()
+            return
+        }
 
         val titulo = findViewById<TextView>(R.id.txtTitulo)
         val categoria = findViewById<TextView>(R.id.txtCategoria)

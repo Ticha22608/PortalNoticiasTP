@@ -45,8 +45,7 @@ class LoginActivity : AppCompatActivity() {
             registrar(usuarioNombre.text.toString(), usuarioContraseña.text.toString())
         }
         iniciarSesion.setOnClickListener {
-            if (usuarioNombre.text.toString() == "debug") debug()
-            else login(usuarioNombre.text.toString(), usuarioContraseña.text.toString())
+            login(usuarioNombre.text.toString(), usuarioContraseña.text.toString())
         }
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -97,12 +96,6 @@ class LoginActivity : AppCompatActivity() {
         return (usuarioNombre.text.toString().isEmpty() || usuarioContraseña.text.toString().isEmpty())
     }
 
-    private fun debug() {
-        val intent = Intent(this, testactivity::class.java)
-        Toast.makeText(this,"Debug",Toast.LENGTH_SHORT).show()
-        startActivity(intent)
-        finish()
-    }
 
     private fun actPrincipal(usuario: String) {
         val intent = Intent(this, VistaNoticiasActivity::class.java)
