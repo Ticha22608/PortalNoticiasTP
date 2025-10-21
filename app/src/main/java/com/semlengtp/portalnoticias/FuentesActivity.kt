@@ -25,7 +25,7 @@ class FuentesActivity : AppCompatActivity() {
             try {
                 val response = RetrofitInstancia.api.obtenerNoticias()
                 if (response.isSuccessful) {
-                    val todasLasNoticias = response.body()?.data ?: emptyList()
+                    val todasLasNoticias = response.body()?.noticias ?: emptyList()
                     val fuentesRelacionadas = todasLasNoticias.filter { it.titulo.contains(titulo, ignoreCase = true) }
                     recyclerView.adapter = FuentesAdapter(fuentesRelacionadas)
                 } else {
