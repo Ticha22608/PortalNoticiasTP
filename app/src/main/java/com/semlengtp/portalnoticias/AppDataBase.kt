@@ -16,15 +16,15 @@ abstract class AppDataBase : RoomDatabase() {
         fun getDatabase(context: Context): AppDataBase {
             if (INSTANCIA == null) {
                 synchronized(this){
-                 INSTANCIA=  Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDataBase::class.java,"usuarios_database")
-                    .allowMainThreadQueries()
-                    .fallbackToDestructiveMigration()
-                    .build()
+                    INSTANCIA=  Room.databaseBuilder(
+                        context.applicationContext,
+                        AppDataBase::class.java,"usuarios_database")
+                        .allowMainThreadQueries()
+                        .fallbackToDestructiveMigration()
+                        .build()
+                }
             }
+            return INSTANCIA!!
         }
-        return INSTANCIA!!
     }
-}
 }

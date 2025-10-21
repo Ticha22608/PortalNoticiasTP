@@ -15,9 +15,6 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.PortalNoticiasTP">
         <activity
-                android:name=".testactivity"
-                android:exported="false"/>
-        <activity
                 android:name=".TyC"
                 android:exported="false"/>
         <activity

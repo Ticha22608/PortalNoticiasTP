@@ -14,6 +14,7 @@ class FavoritosFragment : Fragment(R.layout.fragment_favoritos) {
     lateinit var vacio: TextView
     var adapter: FavoritosAdapter? = null
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -33,32 +34,20 @@ class FavoritosFragment : Fragment(R.layout.fragment_favoritos) {
     }
 
     private fun cargarFavoritos() {
+        val lista = GuardarFavoritos.getTodos(requireContext())
 
-        val guardadas: List<Noticia> = GuardarFavoritos.getTodos(requireContext())
-
-        val listaUI: List<NoticiaFavorita> = guardadas.map {
-            NoticiaFavorita(
-                titulo = it.titulo ?: "",
-                descripcion = it.descripcion ?: "",
-                fecha = it.fecha ?: ""
-            )
-        }
-
-        if (listaUI.isEmpty()) {
+        if (lista.isEmpty()) {
             vacio.visibility = View.VISIBLE
             recycler.visibility = View.GONE
-            adapter = null
-            recycler.adapter = null
         } else {
             vacio.visibility = View.GONE
             recycler.visibility = View.VISIBLE
+
             if (adapter == null) {
-                adapter = FavoritosAdapter(listaUI)
+                adapter = FavoritosAdapter(lista.toMutableList())
                 recycler.adapter = adapter
             } else {
-
-                adapter = FavoritosAdapter(listaUI)
-                recycler.adapter = adapter
+                adapter!!.replaceAll(lista)
             }
         }
     }
