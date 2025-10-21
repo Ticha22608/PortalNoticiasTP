@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import android.content.Intent
+
 
 class NoticiasAdapter(
     private val noticias: List<Noticia>
@@ -24,6 +26,12 @@ class NoticiasAdapter(
         holder.titulo.text = noticia.titulo
         holder.descripcion.text = noticia.descripcion
         Picasso.get().load(noticia.imagen).into(holder.imagen)
+
+        holder.itemView.setOnClickListener {
+                val intent = Intent(holder.itemView.context,FuentesActivity::class.java)
+                intent.putExtra("TITULO",noticia.titulo)
+                holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = noticias.size
