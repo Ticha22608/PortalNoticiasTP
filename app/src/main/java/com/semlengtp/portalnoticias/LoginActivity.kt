@@ -7,14 +7,16 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlin.toString
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var usuario : EditText
-    lateinit var contraseña : EditText
+    lateinit var usuarioNombre : EditText
+    lateinit var usuarioContraseña : EditText
     lateinit var recordarUsuario : CheckBox
     lateinit var crearUsuario : Button
     lateinit var iniciarSesion : Button
@@ -29,8 +31,8 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        usuario = findViewById(R.id.usuario)
-        contraseña = findViewById(R.id.contraseña)
+        usuarioNombre = findViewById(R.id.usuario)
+        usuarioContraseña = findViewById(R.id.contraseña)
         recordarUsuario = findViewById(R.id.recordarUsuario)
         crearUsuario = findViewById(R.id.crearUsuario)
         iniciarSesion = findViewById(R.id.iniciarSesion)
@@ -40,19 +42,29 @@ class LoginActivity : AppCompatActivity() {
 
         if (usuarioGuardado != null && contraseñaGuaradada != null) actPrincipal(usuarioGuardado)
         crearUsuario.setOnClickListener {
-            registrar()
+            registrar(usuarioNombre.text.toString(), usuarioContraseña.text.toString())
         }
         iniciarSesion.setOnClickListener {
-            if (usuario.text.toString() == "debug") debug()
-            else login(usuario.text.toString(), contraseña.text.toString())
+            if (usuarioNombre.text.toString() == "debug") debug()
+            else login(usuarioNombre.text.toString(), usuarioContraseña.text.toString())
         }
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                finishAffinity()
+            }
+        })
     }
 
     private fun login(usuario: String, contraseña: String) {
         val datosIncompletos = inputCheck()
         if (datosIncompletos) {
-            Toast.makeText(this, "Campos no completados", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Campos no completados", Toast.LENGTH_SHORT).show()
         } else {
+            val usuarioEncontrado = AppDatabase.getDatabase(applicationContext).usuarioDao().encontrarExacto(usuario, contraseña)
+            if (usuarioEncontrado == null) {
+                Toast.makeText(this, "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+                return
+            }
             if (recordarUsuario.isChecked) {
                 var preferencias = getSharedPreferences(resources.getString(R.string.sp_credenciales), MODE_PRIVATE)
                 preferencias.edit().putString(resources.getString(R.string.usuario), usuario).apply()
@@ -62,22 +74,27 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun registrar() {
+    private fun registrar(usuario: String, contraseña: String) {
         val datosIncompletos = inputCheck()
         if (datosIncompletos) {
             Toast.makeText(this, "Campos no completados", Toast.LENGTH_SHORT).show()
         } else {
-            if (recordarUsuario.isChecked) Log.i("TODO", "Traspaso de dato hacia la siguiente activity")
+            val usuarioEncontrado = AppDatabase.getDatabase(applicationContext).usuarioDao().encontrarNombre(usuario)
+            if (usuarioEncontrado != null) {
+                Toast.makeText(this, "Usuario ya creado!", Toast.LENGTH_SHORT).show()
+                return
+            }
             val intent = Intent(this, TyC::class.java)
             Toast.makeText(this, "Por favor, leer los terminos y condiciones", Toast.LENGTH_SHORT).show()
-            Log.i("TODO", "Traspaso de datos de login hacia la siguiente activity para escribir en BD si el usuario acepta TyC")
+            intent.putExtra("USUARIO", usuario)
+            intent.putExtra("CONTRASEÑA", contraseña)
             startActivity(intent)
             finish()
         }
     }
 
     private fun inputCheck(): Boolean {
-        return (usuario.text.toString().isEmpty() || contraseña.text.toString().isEmpty())
+        return (usuarioNombre.text.toString().isEmpty() || usuarioContraseña.text.toString().isEmpty())
     }
 
     private fun debug() {
@@ -93,13 +110,4 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-
-    /* Implementar luego
-    fun finalizarLogin() {
-        //val intent = Intent(this, VistaNoticiasActivity::class.java)
-        Toast.makeText(this,"VistaNoticiasActivity aún no implementado!",Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-        //mover esta función a una clase con una colección de funciones públicas luego
-    }*/
 }
