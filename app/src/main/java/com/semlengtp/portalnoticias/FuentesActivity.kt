@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*
@@ -12,6 +14,8 @@ class FuentesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.green)
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
         setContentView(R.layout.activity_noticia_completa)
 
         @Suppress("DEPRECATION")
