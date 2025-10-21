@@ -61,7 +61,7 @@ class VistaNoticiasActivity : AppCompatActivity() {
         toggle.syncState()
         val header = navigationView.getHeaderView(0)
         val cerrarSesion = header.findViewById<ImageButton>(R.id.btnCerrarSesion)
-        var recyclerView = findViewById<RecyclerView>(R.id.recyclerNoticias)
+        //val recyclerView = findViewById<RecyclerView>(R.id.recyclerNoticias)
         cerrarSesion.setOnClickListener{
             preferencias.edit().putString(resources.getString(R.string.usuario),null).apply()
             preferencias.edit().putString(resources.getString(R.string.contraseña),null).apply()
@@ -72,11 +72,18 @@ class VistaNoticiasActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_noticias -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer, NoticiasFragment())
+                        .commit()
+                    supportActionBar?.title = "Portal Noticias"
                     drawerLayout.closeDrawer(GravityCompat.START)
                     true
                 }
                 R.id.nav_favoritos -> {
-                    startActivity(Intent(this, MisFavoritosActivity::class.java))
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer, FavoritosFragment())
+                        .commit()
+                    supportActionBar?.title = "Mis favoritos"
                     drawerLayout.closeDrawer(GravityCompat.START)
                     true
                 }
@@ -84,8 +91,14 @@ class VistaNoticiasActivity : AppCompatActivity() {
             }
         }
 
-        recyclerView = findViewById(R.id.recyclerNoticias)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, NoticiasFragment())
+                .commit()
+            navigationView.setCheckedItem(R.id.nav_noticias)
+            supportActionBar?.title = "Portal Noticias"
+        }
 
         lifecycleScope.launch {
             try {
@@ -102,6 +115,6 @@ class VistaNoticiasActivity : AppCompatActivity() {
             }
         }
     }
+
+
 }
-
-
