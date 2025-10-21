@@ -10,7 +10,7 @@
 
 ## Partes a trabajar
 
-[@Ticha22608](https://github.com/Ticha22608) — Login, backend y ajustes menores de frontend
+[@Ticha22608](https://github.com/Ticha22608) — Backend (Login y registro), frontend
 
 [@JCRezzano](https://github.com/JCRezzano) — Lista general de elementos, backend (implementación API)  
 
