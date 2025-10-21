@@ -10,6 +10,6 @@ interface NoticiasAPI {
         @Query("language") idioma: String = "es",
         @Query("source-countries") pais: String = "ar",
         @Query("number") cantidad: Int = 5,
-        @Query("api-key") apiKey: String = "6cda7bded3ed48be8595e9ad2de67e61"
+        @Query("api-key") apiKey: String = "b388089098ea4128b8c0d6005d1070de"
     ) : Response <NoticiasResponse>
 }

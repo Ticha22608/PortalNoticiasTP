@@ -28,6 +28,17 @@
         android:textColor="#FFFFFF"
         android:paddingBottom="4dp"/>
 
+    <ImageButton
+        android:id = "@+id/btnFavorito"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:srcCompat = "@drawable/ic_favorito_vacio"
+        android:contentDescription="Agregar a favoritos"
+        android:focusable="true"
+        android:clickable="true"/>
+
     <TextView
         android:id="@+id/txtCategoria"
         android:layout_width="wrap_content"
