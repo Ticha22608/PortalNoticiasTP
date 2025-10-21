@@ -18,6 +18,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="12dp">
+
+    <TextView
+        android:id ="@+id/txtTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:paddingBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/txtCategoria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#FFCC00"
+        android:textStyle = "italic"
+        android:paddingBottom="4dp"/>
+
     <TextView
         android:id="@+id/txtFecha"
         android:layout_width="match_parent"
@@ -25,13 +44,6 @@
         android:textSize="12sp"
         android:textColor="#B3FFFFFF"
         android:paddingBottom="4dp"/>
-    <TextView
-        android:id ="@+id/txtTitulo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"/>
 
     <TextView
         android:id ="@+id/txtDescripcion"

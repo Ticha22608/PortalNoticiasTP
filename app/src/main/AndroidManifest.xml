@@ -36,6 +36,10 @@
                 android:name=".MisFavoritosActivity"
                 android:exported="false"
                 android:label="@string/titulo_mis_favoritos"/>
+        <activity
+            android:name=".FuentesActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
