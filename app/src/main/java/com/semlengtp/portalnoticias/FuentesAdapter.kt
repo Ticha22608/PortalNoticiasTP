@@ -15,12 +15,14 @@ class FuentesAdapter(private val fuentes: List<Noticia>) :
         val titulo: TextView = itemView.findViewById(R.id.txtTitulo)
         val fuente: TextView = itemView.findViewById(R.id.txtFuente)
         val descripcion: TextView = itemView.findViewById(R.id.txtDescripcion)
+
+        val cuerpo : TextView = itemView.findViewById(R.id.txtCuerpo)
         val imagen: ImageView = itemView.findViewById(R.id.imgNoticia)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_fuentes, parent, false)
+            .inflate(R.layout.activity_noticia_completa, parent, false)
         return ViewHolder(view)
     }
 
@@ -29,6 +31,7 @@ class FuentesAdapter(private val fuentes: List<Noticia>) :
         holder.titulo.text = noticia.titulo
         holder.fuente.text = noticia.fuente
         holder.descripcion.text = noticia.descripcion
+        holder.cuerpo.text =noticia.cuerpo
         Picasso.get().load(noticia.imagen).into(holder.imagen)
     }
 
