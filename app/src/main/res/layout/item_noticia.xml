@@ -17,28 +17,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_gravity="center"
     android:padding="12dp">
 
-    <TextView
-        android:id ="@+id/txtTitulo"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="18sp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/txtTitulo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingBottom="4dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <ImageButton
+            android:id="@+id/btnFavorito"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="Agregar a favoritos"
+            android:focusable="true"
+            app:srcCompat="@drawable/ic_favorito_vacio"/>
+    </LinearLayout>
+   <!-- <TextView
+        android:id="@+id/txtTitulo"
+        android:layout_width="319dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="4dp"
         android:textColor="#FFFFFF"
-        android:paddingBottom="4dp"/>
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
     <ImageButton
-        android:id = "@+id/btnFavorito"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:id="@+id/btnFavorito"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
         android:layout_marginStart="8dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        app:srcCompat = "@drawable/ic_favorito_vacio"
+        android:clickable="true"
         android:contentDescription="Agregar a favoritos"
         android:focusable="true"
-        android:clickable="true"/>
-
+        app:srcCompat="@drawable/ic_favorito_vacio"/>-->
     <TextView
         android:id="@+id/txtCategoria"
         android:layout_width="wrap_content"
